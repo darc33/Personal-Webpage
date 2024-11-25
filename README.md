@@ -24,9 +24,9 @@ This Personal Webpage is a web application designed for private use while adheri
 
 ### Public Page (Non-Logged-In View)
 
--Displays achievements and selected personal projects.
--Links to external portfolios (e.g., Behance, Credly).
--Styled with Cyberpunk and video game influences to captivate viewers.
+- Displays achievements and selected personal projects.
+- Links to external portfolios (e.g., Behance, Credly).
+- Styled with Cyberpunk and video game influences to captivate viewers.
 
 ### Private Page (Logged-In View)
 

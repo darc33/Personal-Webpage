@@ -1,0 +1,17 @@
+.music-player-container {
+    margin-top: 2rem;
+    padding: 1rem;
+    text-align: center;
+    background: #121212; /* Dark background for the player */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow */
+
+}
+
+.react-player {
+    display:block;
+    margin: 0 auto;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra del reproductor */
+}
