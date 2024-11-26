@@ -1,0 +1,156 @@
+.header-container{
+    width: 100%; /*calc(100% + 20px);*/
+    margin: 0 0 0 -40px;
+
+}
+.home-header {
+    margin: 0; /* Ensures no default margin around the header */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    width: 100%;
+    background-color: rgba(15, 13, 30, 0.8); /* Translucent background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Logo */
+.header-logo{
+    flex: 0 0 auto
+}
+.header-logo img {
+    height: 50px; /* Scale to fit logo size */
+    width: auto; /* Keep aspect ratio */
+    filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.7)); /* Subtle neon shadow */
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.header-logo img:hover {
+    transform: scale(1.1); /* Zoom effect on hover */
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 1)); /* Increase brightness */
+}
+
+.header-title-container{
+    flex: 1;
+    position: relative;
+    align-items: center;
+    height:auto;
+    display:flex;
+}
+/* "DARC" title with glitch effect */
+.header-title {
+    width: 100%;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00d1ff; /* Cyberpunk Style */
+    position: absolute;
+    /*left: 50%;
+    transform: translateX(-50%);*/
+    text-transform: uppercase;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.7)); /* Subtle neon shadow */
+    animation: glitch 2s infinite;
+    margin: 0 10px;
+}
+
+/* Glitch effect */
+@keyframes glitch {
+    0% {
+        text-shadow:
+            2px 2px 0 #f00, /* Red */
+            -2px -2px 0 #0ff; /* Cyan */
+    }
+
+    50% {
+        text-shadow:
+            -2px 2px 0 #0ff,
+            2px -2px 0 #f00;
+    }
+
+    100% {
+        text-shadow:
+            2px -2px 0 #f00,
+            -2px 2px 0 #0ff;
+    }
+}
+
+/* Buttons */
+.header-buttons {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 10px;
+}
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #ff007a, #0ff);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.5);
+  }
+  
+  .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 255, 255, 0.7);
+  }
+  
+  .btn-login {
+    background: linear-gradient(135deg, #007bff, #0ff);
+  }
+  
+  .btn-register {
+    background: linear-gradient(135deg, #ff007a, #ffbf00);
+  }
+
+  .subheader {
+    position: relative;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.0); /* transparent background */
+    backdrop-filter: blur(8px); /* blur effect */
+    padding: 10px 0;
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+    z-index: 10;
+}
+
+.subheader ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.subheader ul li {
+    position: relative;
+    margin: 0 14px;
+}
+
+.subheader ul li:not(:last-child)::after{
+    content: '|';
+    position: absolute;
+    right: -16px;
+    color: #ffffff;
+    font-size: 20px;
+    top:0;
+}
+
+.subheader ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.subheader ul li a:hover {
+    color: #00ffff; /* a touch of neon color for the hover */
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); /* glow effect */
+}

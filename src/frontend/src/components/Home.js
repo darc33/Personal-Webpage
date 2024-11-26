@@ -2,27 +2,14 @@ import React from 'react';
 import "./Home.css";
 import PortfolioSlider from './PortfolioSlider';
 import MusicPlayer from './MusicPlayer';
-import GlitchText from './GlitchText';
 import Sidebar from './Sidebar';
+import Header from './Header';
 
 const Home = () => {
   return (
     <div className="home-container">
 
-      <header className="home-header">
-        <div className='header-logo'>
-          <img src='/logo512.png' alt="Logo"></img>
-        </div>
-        <div className='header-title-container'>
-          <h1 className="header-title"><GlitchText text={"DARC"} /></h1>
-        </div>
-        
-        
-        <div className="header-buttons">
-          <button className="btn btn-login">Log In</button>
-          <button className="btn btn-register">Register</button>
-        </div>        
-      </header>
+      <Header />
 
       <section className="home-sidebar">
         <Sidebar />
