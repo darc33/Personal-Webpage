@@ -41,6 +41,26 @@ body {
       opacity: 0.7;
     }
 }
+
+.home-phrase-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background: transparent;
+  color: #00ffff;
+
+}
+
+.home-phrase-content {
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; /*Shine effect*/
+  font-family: 'Courier New', Courier, monospace;
+  text-align: left;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
   
 .home-slider{
     width: 100%;
