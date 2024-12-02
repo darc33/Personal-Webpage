@@ -4,13 +4,13 @@
     align-items: center;
 }
 /* Add a glowing effect to the slices */
-path {
+#chart path {
     transition: all 0.3s ease;
     filter: drop-shadow(0 0 10px #00FF00); /* Green glowing shadow */
   }
   
   /* Style the labels with futuristic font and glowing text */
-  text {
+#chart text {
     font-family: 'Roboto', sans-serif;
     fill: #00FF00; /* Green text color */
     text-shadow: 1px 1px 5px rgba(0, 255, 0, 0.8); /* Glowing effect on text */
