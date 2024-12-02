@@ -10,11 +10,11 @@ const Home = () => {
   return (
     <div className="home-container">
 
-      <Header />
+      {/*<Header />
 
       <section className="home-sidebar">
         <Sidebar />
-      </section>
+      </section>*/}
 
       <section className="home-phrase">
         <div className="home-phrase-container">
@@ -77,9 +77,9 @@ const Home = () => {
           </li>
         </ul>
       </section>
-      <footer className="home-footer">
+      {/*<footer className="home-footer">
         <p>All rights reserved © DARC {new Date().getFullYear()}  </p>
-      </footer>
+      </footer>*/}
     </div>
 
   );

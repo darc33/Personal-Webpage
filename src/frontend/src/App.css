@@ -1,7 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0f0d1e; /* Dark base background */
+  color: #f0f0f0; /* Light text for contrast */
+  overflow-x: hidden; /* Prevents unexpected horizontal scrolling */
+}
+/*
 .App {
   text-align: center;
-  background-color: #121212; /* Fondo oscuro */
-  color: #00ff99; /* Acentos brillantes en verde */
+  background-color: #121212; /* Fondo oscuro *
+  color: #00ff99; /* Acentos brillantes en verde *
   font-family: 'Arial', sans-serif;
 }
 
@@ -37,4 +46,44 @@
   to {
     transform: rotate(360deg);
   }
+}
+*/
+.app-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Takes up the entire screen */
+  padding: 0 20px 20px 20px;
+  background: linear-gradient(135deg, #1b1b2f, #0f0d1e);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2); /* Subtle shadow */
+  border-radius: 10px;
+  animation: neon-flicker 3s infinite alternate; /* Subtle flickering */
+}
+
+/* Neon effects on edges */
+.app-container::before {
+  content: '';
+  position: absolute;
+  inset: 0; /* Covers the entire container */
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(255, 0, 150, 0.3));
+  filter: blur(40px); /* Smudge to create glow */
+  z-index: -1; /* Behind the content */
+  animation: neon-flicker 3s infinite alternate;
+}
+
+/* Neon blinking animation */
+@keyframes neon-flicker {
+  0%, 100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.home-footer {
+  text-align: center;
+  margin-top: auto;
 }
