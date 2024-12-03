@@ -1,0 +1,9 @@
+[
+    { "name": "GTA V", "platform": "PC", "genre": "Action", "timePlayed": 150 },
+    { "name": "Assassin's Creed", "platform": "PS3", "genre": "Action", "timePlayed": 120 },
+    { "name": "The Witcher 3", "platform": "PC", "genre": "RPG", "timePlayed": 200 },
+    { "name": "Final Fantasy XV", "platform": "PS3", "genre": "RPG", "timePlayed": 180 },
+    { "name": "Minecraft", "platform": "PS4", "genre": "Adventure", "timePlayed": 300 },
+    { "name": "Overwatch", "platform": "PC", "genre": "Shooter", "timePlayed": 100 },
+    { "name": "League of Legends", "platform": "PC", "genre": "Action", "timePlayed": 70 }
+]

@@ -24,4 +24,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-src/frontend/public/data/gamesData.json
+personal-webpage/src/frontend/public/data/gamesData.json
