@@ -1,21 +1,46 @@
-#chart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.engineer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 16px;
+  box-sizing: border-box;
 }
+#chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Add a glowing effect to the slices */
 #chart path {
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 0 10px #00FF00); /* Green glowing shadow */
-  }
-  
-  /* Style the labels with futuristic font and glowing text */
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px #00FF00);
+  /* Green glowing shadow */
+}
+
+/* Style the labels with futuristic font and glowing text */
 #chart text {
-    font-family: 'Roboto', sans-serif;
-    fill: #00FF00; /* Green text color */
-    text-shadow: 1px 1px 5px rgba(0, 255, 0, 0.8); /* Glowing effect on text */
-  }
+  font-family: 'Roboto', sans-serif;
+  fill: #00FF00;
+  /* Green text color */
+  text-shadow: 1px 1px 5px rgba(0, 255, 0, 0.8);
+  /* Glowing effect on text */
+}
 
-  
+.github-container,
+.badges-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; /* Spacing between badges */
+  padding: 16px; /* Inner space around badges */
+  width: 100%;
+  max-width: 1200px; 
+  margin: 0 auto; /* Center the container horizontally */
+  box-sizing: border-box; /* Include padding in the container size */
+}
 
-
+.github-container {
+  grid-template-columns: 1.5fr 1fr;
+}
