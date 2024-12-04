@@ -1,12 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import "./GamerPage.css";
 import * as d3 from "d3";
+import GamesHighlights from './GamesHighlights';
 
 
 const GamerPage = () => {
+    const [gameslist, setGameslist] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const [achievements, setAchievements] = useState([]);
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/games/');
+                if (!response.ok) throw new Error('Failed to fetch');
+                const result = await response.json();
+                setGameslist(result);
+            } catch (err) {
+                setError('Error fetching data');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    //if (loading) return <div>Loading...</div>;
+    //if (error) return <div>{error}</div>;
 
     useEffect(() => {
         const fetchAchievements = async () => {
@@ -32,6 +55,7 @@ const GamerPage = () => {
 
         fetchAchievements();
     }, []);
+
     useEffect(() => {
         // Constants for margin and dimensions
         const margin = { top: 20, right: 10, bottom: 10, left: 10 };
@@ -208,6 +232,10 @@ Time Played: ${d.data?.timePlayed || 0} hrs`;
                     ))}
                 </ul>
             </div>
+            <div>
+            <h1>Highlights</h1>
+            {gameslist && <GamesHighlights data={gameslist} />}
+        </div>
         </div>
 
     );

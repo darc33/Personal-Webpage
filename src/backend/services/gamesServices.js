@@ -30,5 +30,5 @@ export const fetchSteamGames = async () => {
 };
 
 export const mergeGamesData = async (steamGames) => {
-    return mergeGames(steamGames);
+    return await mergeGames(steamGames);
 };
