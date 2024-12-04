@@ -1,8 +1,40 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./GamerPage.css";
 import * as d3 from "d3";
 
+
 const GamerPage = () => {
+
+    const [achievements, setAchievements] = useState([]);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchAchievements = async () => {
+            const appId = '1599340'; // Reemplaza con el ID del juego que deseas consultar
+            const steamApiKey = process.env.REACT_APP_STEAM_API_KEY;
+            const steamId = process.env.REACT_APP_STEAM_ID;
+            console.log(steamId);
+            console.log("log1:", steamId);
+
+            try {
+                const response = await fetch(
+                    `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?appid=${appId}&key=${steamApiKey}&steamid=${steamId}`, {method: 'GET', mode: 'no-cors',}
+                );
+                console.log('respuesta', response);
+                const data = await response.json();
+                if (data && data.playerstats && data.playerstats.achievements) {
+                    setAchievements(data.playerstats.achievements);
+                } else {
+                    setError('No se encontraron logros.');
+                }
+            } catch (err) {
+                setError('Hubo un error al obtener los logros.');
+                console.error(err);
+            }
+        };
+
+        fetchAchievements();
+    }, []);
     useEffect(() => {
         // Constants for margin and dimensions
         const margin = { top: 20, right: 10, bottom: 10, left: 10 };
@@ -22,16 +54,8 @@ const GamerPage = () => {
         // Load data from JSON file
         d3.json("/data/gamesData.json").then((data) => {
 
-            console.log("Data loaded:", data);
-            // Define the color scale for genres
-            /*const genreColors = d3.scaleOrdinal()
-                .domain([...new Set(data.map(d => d.genre))])
-                .range(d3.schemeSet3);*/
-
             // Agrupar por género y plataforma utilizando d3.group()
             const groupedData = d3.group(data, d => d.genre, d => d.platform);
-
-            console.log("Grouped Data:", groupedData); // Verificar los datos agrupados
 
             // Compute the root hierarchy using genres, platforms, and time played
             const hierarchyData = Array.from(groupedData, ([genre, platforms]) => ({
@@ -42,24 +66,19 @@ const GamerPage = () => {
                 }))
             }));
 
-            console.log("Hierarchy Data:", hierarchyData);
-
             const root = d3.hierarchy({ name: "root", children: hierarchyData })
                 .sum(d => d.timePlayed) // Usar el tiempo jugado como valor
                 .sort((a, b) => b.value - a.value);
 
-            console.log("Root hierarchy:", root);
-
             const leaves = root.leaves();
-            console.log("Leaf nodes:", leaves);
 
-            leaves.forEach((leaf, i) => {
+            /*leaves.forEach((leaf, i) => {
                 console.log(`Leaf ${i}:`, leaf.data); // Inspeccionar cada nodo hoja
                 console.log(`  Name: ${leaf.data.name}`);
                 console.log(`  Platform: ${leaf.data.platform}`);
                 console.log(`  Genre: ${leaf.data.genre}`);
                 console.log(`  Time Played: ${leaf.data.timePlayed}`);
-            });
+            });*/
 
             // Apply the squarify treemap layout
             d3.treemap()
@@ -87,9 +106,9 @@ const GamerPage = () => {
                 .enter().append("g")
                 .attr("transform", d => `translate(${d.x0},${d.y0})`);
 
-            nodes.each((d, i) => {
+            /*nodes.each((d, i) => {
                 console.log(`Node ${i} data:`, d.data); // Inspeccionar datos en cada nodo
-            });
+            });*/
 
             // Draw rectangles for each game
             nodes.append("rect")
@@ -102,7 +121,6 @@ const GamerPage = () => {
             // Add tooltips for details on hover
             nodes.append("title")
                 .text(d => {
-                    console.log("Title data:", d.data); // Verificar datos al construir el tooltip
                     return `Game: ${d.data?.name || "Unknown"}
 Platform: ${d.data?.platform || "Unknown"}
 Genre: ${d.data?.genre || "Unknown"}
@@ -120,13 +138,13 @@ Time Played: ${d.data?.timePlayed || 0} hrs`;
                 .style("font-size", "14px") // Font size
                 .style("font-weight", "bold") // Bold text
                 .style("text-shadow", "0px 0px 10px rgba(0, 255, 255, 0.8)") // Neon glow effect
-                .each(function(d) {
+                .each(function (d) {
                     const rectWidth = d.x1 - d.x0; // Calculate the rectangle's width
                     const maxLineLength = Math.floor(rectWidth / 7); // Estimate max characters per line
                     const words = d.data?.name.split(" ") || ["Unknown"]; // Split text into words
                     let line = "";
                     let lines = [];
-                    
+
                     words.forEach(word => {
                         if ((line + word).length <= maxLineLength) {
                             line += `${word} `;
@@ -136,7 +154,7 @@ Time Played: ${d.data?.timePlayed || 0} hrs`;
                         }
                     });
                     lines.push(line.trim()); // Add the last line
-            
+
                     // Append lines as individual tspan elements
                     const textElement = d3.select(this);
                     lines.forEach((line, i) => {
@@ -145,13 +163,12 @@ Time Played: ${d.data?.timePlayed || 0} hrs`;
                             .attr("y", 15 + i * 20) // Adjust vertical space for each line
                             .text(line);
                     });
-                    console.log(rectWidth, maxLineLength, words, line, lines, textElement,d.x0, d.y0);
                 });
 
             // Add a legend for genres
             const legend = svg.append("g")
                 .attr("transform", `translate(${width + 20}, 20)`);
-        
+
             // Add legend items
             const legendItems = legend.selectAll("g")
                 .data(Object.keys(genreColors))
@@ -182,6 +199,18 @@ Time Played: ${d.data?.timePlayed || 0} hrs`;
         <div className='gamer-container'>
             {/*<h1>Engineer</h1>*/}
             <div id='treemap-chart'></div>
+            <div>
+                <h2>Logros de Steam</h2>
+                {error && <p>{error}</p>}
+                <ul>
+                    {achievements.map((achievement) => (
+                        <li key={achievement.name}>
+                            <p>{achievement.name}</p>
+                            <p>{achievement.achieved ? 'Desbloqueado' : 'No Desbloqueado'}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
 
     );
