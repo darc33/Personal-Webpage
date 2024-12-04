@@ -11,17 +11,14 @@ const GamerPage = () => {
     useEffect(() => {
         const fetchAchievements = async () => {
             const appId = '1599340'; // Reemplaza con el ID del juego que deseas consultar
-            const steamApiKey = process.env.REACT_APP_STEAM_API_KEY;
-            const steamId = process.env.REACT_APP_STEAM_ID;
-            console.log(steamId);
-            console.log("log1:", steamId);
 
             try {
                 const response = await fetch(
-                    `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?appid=${appId}&key=${steamApiKey}&steamid=${steamId}`, {method: 'GET', mode: 'no-cors',}
+                    'http://localhost:5000/steam-achievements'
                 );
                 console.log('respuesta', response);
                 const data = await response.json();
+                console.log('data:', data);
                 if (data && data.playerstats && data.playerstats.achievements) {
                     setAchievements(data.playerstats.achievements);
                 } else {
