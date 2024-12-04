@@ -232,10 +232,10 @@ Time Played: ${d.data?.timePlayed || 0} hrs`;
                     ))}
                 </ul>
             </div>
-            <div>
-            <h1>Highlights</h1>
-            {gameslist && <GamesHighlights data={gameslist} />}
-        </div>
+            <div className="gamer-highlights">
+                <h1>Highlights</h1>
+                {gameslist && <GamesHighlights data={gameslist} />}
+            </div>
         </div>
 
     );

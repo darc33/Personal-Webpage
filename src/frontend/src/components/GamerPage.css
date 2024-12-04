@@ -12,3 +12,12 @@
     width: 80%;
     max-width: 1200px;
 }
+
+.gamer-highlights {
+  position: relative;
+  width: 80vw;
+  margin: 5vw auto;
+  box-sizing: border-box;
+  max-width: 1920px;
+  height: 100%;
+}
