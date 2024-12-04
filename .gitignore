@@ -1,5 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Frontend
+src/frontend/node_modules/
+src/frontend/build/
+src/frontend/public/data/gamesData.json
+
+# Backend
+src/backend/node_modules/
+src/backend/.env
+src/backend/logs/
+src/backend/*.log
+
 # dependencies
 /node_modules
 /.pnp
@@ -11,17 +22,33 @@
 # production
 /build
 
-# misc
-.DS_Store
+# Environment variables
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# Logs
+logs/
+*.log
+*.gz
 *log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-src/frontend/public/data/gamesData.json
+# General
+.DS_Store
+.idea/
+.vscode/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
