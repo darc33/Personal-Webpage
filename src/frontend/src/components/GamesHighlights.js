@@ -26,7 +26,7 @@ const GamesHighlights = ({ data }) => {
                 <div className="card-info snd-card">
                     <div className='info-rotated'>
                         <div className='info-rotated-num'>
-                            {data.achievementsUnlocked}
+                            {data.tAchievements}
                         </div>
                         <div className='info-rotated-text'>
                             Achievements Unlocked
@@ -39,7 +39,7 @@ const GamesHighlights = ({ data }) => {
                 <div className="card-info trd-card">
                     <div className='info-rotated'>
                         <div className='info-rotated-num'>
-                            {data.longestStreak}
+                            {Math.round(data.totalHours / 24)}
                         </div>
                         <div className='info-rotated-text'>
                             Longest Streak

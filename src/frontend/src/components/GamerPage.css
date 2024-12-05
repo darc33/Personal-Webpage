@@ -9,7 +9,7 @@
   }
 
 #treemap-chart {
-    width: 80%;
+    width: 80vw;
     max-width: 1200px;
 }
 
@@ -20,4 +20,24 @@
   box-sizing: border-box;
   max-width: 1920px;
   height: 100%;
+}
+
+.gamer-highlights h1 {
+  color: #00FF7F; /* Un verde neón */
+    text-transform: uppercase; /* Mayúsculas */
+    font-size: clamp(2rem, 5vw, 3rem); /* Tamaño de fuente responsivo con clamp */
+    line-height: clamp(2.5rem, 6vw, 4rem); /* Altura de línea responsiva con clamp */
+    letter-spacing: 5px; /* Espaciado entre letras */
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.8), 0 0 20px rgba(0, 255, 127, 0.6); /* Resplandor verde */
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .gamer-highlights h1 {
+      font-size: clamp(1.8rem, 6vw, 2.8rem); /* Tamaño un poco más pequeño en pantallas más pequeñas */
+      line-height: clamp(2.2rem, 6vw, 3.2rem);
+      letter-spacing: 3px;
+  }
 }

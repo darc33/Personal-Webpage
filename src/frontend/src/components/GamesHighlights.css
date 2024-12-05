@@ -4,6 +4,7 @@
     gap: 20px;
     grid-template-rows: 50% 50%;
     color: white;
+    text-shadow: 0 0 3px #00FFFF, 0 0 6px #00FFFF, 0 0 12px #00FFFF;
     height: clamp(630px, 55vw, 1200px);
 }
 
@@ -29,7 +30,7 @@
     align-items: center;
     overflow: hidden;
     box-sizing: border-box;
-    background: conic-gradient(from 160deg at 113% -17%, #925801 30deg, #0a6040 71deg, #2c0050 125deg);
+    background: conic-gradient(from 140deg at 150% -20%, #00FFD1 25deg, #002B7F 90deg, #BF00FF 160deg); /*conic-gradient(from 160deg at 113% -17%, #925801 30deg, #0a6040 71deg, #2c0050 125deg);*/
     clip-path: inset(0 0 0 0 round 12px);
 }
 
@@ -39,11 +40,11 @@
 }
 
 .snd-card {
-    background: linear-gradient(147.86deg, #C48100 25.78%, #2c0050 101.81%);
+    background: linear-gradient(135deg, #4361EE 25.78%, #BF00FF 101.81%);/*linear-gradient(147.86deg, #C48100 25.78%, #2c0050 101.81%);*/
 }
 
 .trd-card {
-    background: radial-gradient(100% 50% at 50% -10%, #C48100 0%, #2c0050 100%);
+    background: radial-gradient(100% 50% at 50% -10%, #FF5733 0%, #BF00FF 100%);/*radial-gradient(100% 50% at 50% -10%, #C48100 0%, #2c0050 100%);*/
 }
 
 .card-info-title {
@@ -68,11 +69,12 @@
     line-height: clamp(22px, 1.2em, 48px);
     letter-spacing: 0;
     text-overflow: ellipsis;
-    overflow: hidden;
+    /*overflow: hidden;*/
     overflow-wrap: break-word;
     hyphens: auto;
     max-width: fit-content;
     color: #ffcc00;
+    text-shadow: 0 0 5px #00FFD1, 0 0 10px #00FFD1, 0 0 20px #00FFD1;
 }
 
 .card-info-subtitle {
@@ -112,13 +114,13 @@
 }
 
 .info-rotated-num {
-    font-size: clamp(56px, 8vw, 160px);
+    font-size: clamp(56px, 7vw, 160px);
     line-height: clamp(69px, 10vw, 180px);
     font-weight: 800;
 }
 
 .info-rotated-text {
-    font-size: clamp(16px, 1.5vw, 30px);
+    font-size: clamp(16px, 1.4vw, 30px);
     line-height: clamp(19px, 1.8vw, 36px);
     font-weight: 500;
     text-align: center;
@@ -131,15 +133,15 @@
 }
 
 .card-4th {
-    background: linear-gradient(90deg, #925801 10%, #2c0050 164%, #022216 289% );
+    background: linear-gradient(90deg, #00FFD1 10%, #BF00FF 164%, #FF5733 289%);/*linear-gradient(90deg, #925801 10%, #2c0050 164%, #022216 289% );*/
 }
 
 .card-5th {
-    background: linear-gradient(90deg, #925801 -55%, #2c0050 68%, #022216 194% );
+    background: linear-gradient(90deg, #00FFD1 -55%, #BF00FF 68%, #FF5733 194%);
 }
 
 .card-6th {
-    background: linear-gradient(90deg, #925801 -155%, #2c0050 2%, #022216 73% );
+    background: linear-gradient(90deg, #00FFD1 -155%, #BF00FF 2%, #FF5733 73%);
 }
 
 .game-icon {
@@ -152,15 +154,17 @@
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
-    opacity: 0.4; /* Asegura que el texto sea visible */
-    transition: transform 0.3s ease-in-out;
+    opacity: 0.6; /* Asegura que el texto sea visible */
     mix-blend-mode: soft-light;
     z-index: 0;
+    transition-property: transform, opacity;
+    transition-duration: .32s;
+    transition-timing-function: ease-in-out;
 }
 
 .game-card:hover .game-icon {
     transform: scale(1.1); /* Aumenta el tamaño del fondo al hacer hover */
-    opacity: 0.6; /* Hace el fondo más visible */
+    opacity: 1; /* Hace el fondo más visible */
 }
 
 .game-title {

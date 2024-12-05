@@ -30,12 +30,16 @@ const mergeGames = async (steamGames) => {
     }));
 
     const allGames = [...normalizedSteamGames, ...normalizedOtherGames];
+    const tAchievements = allGames.reduce((acc, game) => acc + (game.unlockedAchievements || 0), 0);
+    const totalHours = allGames.reduce((acc, game) => acc + (game.playtime_forever || 0), 0)
 
     return {
         totalGames: allGames.length,
         mostPlayed: allGames
             .sort((a, b) => b.playtime_forever - a.playtime_forever)
             .slice(0, 3), // Top 3 juegos más jugados
+        tAchievements: tAchievements,
+        totalHours: totalHours,
     };
 };
 

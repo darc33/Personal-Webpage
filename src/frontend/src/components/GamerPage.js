@@ -7,8 +7,6 @@ import GamesHighlights from './GamesHighlights';
 const GamerPage = () => {
     const [gameslist, setGameslist] = useState(null);
     const [loading, setLoading] = useState(true);
-
-    const [achievements, setAchievements] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -26,34 +24,6 @@ const GamerPage = () => {
         };
 
         fetchData();
-    }, []);
-
-    //if (loading) return <div>Loading...</div>;
-    //if (error) return <div>{error}</div>;
-
-    useEffect(() => {
-        const fetchAchievements = async () => {
-            const appId = '1599340'; // Reemplaza con el ID del juego que deseas consultar
-
-            try {
-                const response = await fetch(
-                    'http://localhost:5000/steam-achievements'
-                );
-                console.log('respuesta', response);
-                const data = await response.json();
-                console.log('data:', data);
-                if (data && data.playerstats && data.playerstats.achievements) {
-                    setAchievements(data.playerstats.achievements);
-                } else {
-                    setError('No se encontraron logros.');
-                }
-            } catch (err) {
-                setError('Hubo un error al obtener los logros.');
-                console.error(err);
-            }
-        };
-
-        fetchAchievements();
     }, []);
 
     useEffect(() => {
@@ -220,20 +190,10 @@ Time Played: ${d.data?.timePlayed || 0} hrs`;
         <div className='gamer-container'>
             {/*<h1>Engineer</h1>*/}
             <div id='treemap-chart'></div>
-            <div>
-                <h2>Logros de Steam</h2>
-                {error && <p>{error}</p>}
-                <ul>
-                    {achievements.map((achievement) => (
-                        <li key={achievement.name}>
-                            <p>{achievement.name}</p>
-                            <p>{achievement.achieved ? 'Desbloqueado' : 'No Desbloqueado'}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
             <div className="gamer-highlights">
                 <h1>Highlights</h1>
+                {loading && <p>Loading...</p>}
+                {error && <p>{error}</p>}
                 {gameslist && <GamesHighlights data={gameslist} />}
             </div>
         </div>
