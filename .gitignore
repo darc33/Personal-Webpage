@@ -11,6 +11,7 @@ src/backend/.env
 src/backend/logs/
 src/backend/*.log
 src/backend/data/gamesData.json
+src/backend/data/books.json
 
 # dependencies
 /node_modules

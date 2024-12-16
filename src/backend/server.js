@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import gamesRoutes from './routes/games.js';
+import booksRoutes from './routes/books.js';
 import errorHandler from './middleware/errorHandler.js';
 
 dotenv.config()
@@ -35,7 +36,7 @@ app.get('/steam-achievements', async (req, res) => {
 
 // Rutas principales
 app.use('/api/games', gamesRoutes);
-
+app.use('/api/books', booksRoutes);
 // Middleware de manejo de errores
 app.use(errorHandler);
 

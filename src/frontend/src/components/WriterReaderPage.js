@@ -1,11 +1,14 @@
 import React from 'react';
 import "./WriterReaderPage.css";
+import SpiderChart from './WriterReaderSpiderChart';
 
 const WriterReaderPage = () => {
     return (
         <div className='writerreader-container'>
-            <h1>Engineer</h1>
-
+            <div className="books-spiderChart">
+                <SpiderChart />
+            </div>
+            
         </div>
 
     );
