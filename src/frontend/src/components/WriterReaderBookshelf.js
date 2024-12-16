@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import './WriterReaderBookshelf.css';
 
 const BooksShelf = ({ books }) => {
-  // Configuración del slider
+  // Slider settings
   const settings = {
     dots: true,
     infinite: true,
