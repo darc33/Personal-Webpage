@@ -1,27 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef} from 'react';
 import * as d3 from 'd3';
 
-const SpiderChart = () => {
+const SpiderChart = ({ data }) => {
   const svgRef = useRef(null);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/books/genres');
-        const result = await response.json();
-        const formattedData = Object.entries(result).map(([genre, value]) => ({
-          genre,
-          value,
-        }));
-        setData(formattedData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     if (data.length === 0) return;

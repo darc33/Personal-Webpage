@@ -17,3 +17,8 @@
 .books-spiderChart svg {
     width: 100%;
 }
+
+.books-bookshelf {
+    width: 80vw;
+    max-width: 1200px;
+}

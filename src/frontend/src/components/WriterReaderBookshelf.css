@@ -1,0 +1,145 @@
+/*.books-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+*/
+  .books-container {
+    display: block; /* Cambiar a block para el slider */
+    margin-top: 2rem;
+  }
+  
+  .slick-slide {
+    display: flex;
+    justify-content: center; /* Centrar cada tarjeta */
+    padding: 0 0.5rem;
+  }
+  
+  .slick-prev, .slick-next {
+    color: transparent; /* Botones de navegación en azul cian */
+    font-size: 2rem;
+  }
+  
+  .slick-prev:before, .slick-next:before {
+    color: #00c2ff; /* Iconos de los botones */
+  }
+  
+  .slick-dots {
+    bottom: -30px; /* Colocar los puntos de navegación más abajo */
+  }
+
+  .slick-dots li.slick-active button:before {
+    opacity: 1; /* Aumentamos la opacidad para que se vea más brillante */
+    color: #00ff99; /* Verde neón para el punto activo */
+  }
+
+  .slick-dots li button:before {
+    color: #00c2ff; /* Color de los puntos */
+    font-size: 1.5rem; /* Tamaño de los puntos */
+  }
+  
+  
+  .book-card {
+    border: 2px solid #00c2ff; /* Azul cian brillante */
+    border-radius: 8px;
+    width: clamp(140px, 10vw, 180px); /* Responsivo */
+    text-align: center;
+    background: linear-gradient(135deg, #10213e, #00111a); /* Fondo oscuro degradado */
+    color: #e3e3ff; /* Blanco suave futurista */
+    box-shadow: 0 4px 8px rgba(0, 194, 255, 0.4), 0 0 15px rgba(0, 0, 0, 0.6); /* Sombras con tonos neón */
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 300px; /* Fijar la altura de la tarjeta */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .book-card:hover {
+    transform: scale(1.1); /* Más grande al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 194, 255, 0.6), 0 0 20px rgba(0, 0, 0, 0.8); /* Sombras más brillantes */
+  }
+  
+  .book-cover {
+    width: 100%;
+    height: 100%; /* Ajustable según pantalla */
+    object-fit: cover;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .book-info {
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro para el texto */
+    border-radius: 8px;
+    margin-top: auto;
+  }
+  
+  .book-info h4 {
+    font-size: clamp(1rem, 1.5vw, 1.25rem); /* Ajustable para diferentes tamaños */
+    margin: 0.5rem 0;
+    color: #00ff99; /* Verde neón */
+    text-shadow: 0 0 5px rgba(0, 255, 153, 0.8); /* Sutil efecto neón */
+  }
+  
+  .book-info p {
+    font-size: clamp(0.875rem, 1.2vw, 1rem); /* Ajustable según pantalla */
+    color: #97a7ff; /* Azul pastel futurista */
+    text-shadow: 0 0 3px rgba(151, 167, 255, 0.6); /* Efecto futurista suave */
+  }
+
+  .bookshelf-title {
+    font-size: clamp(1.5rem, 3vw, 2.5rem); /* Tamaño adaptable */
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #00c2ff; /* Azul cian brillante */
+    text-shadow: 0 0 8px rgba(0, 194, 255, 0.8), 0 0 10px rgba(0, 255, 153, 0.6); /* Efecto neón */
+    font-weight: bold;
+  }
+  
+  /* Hacer el diseño más responsivo */
+  @media (min-width: 1024px) {
+    .books-container {
+      width: 100%;
+      max-width: 100%; /* Limitar el ancho máximo para no desbordarse */
+      overflow-x: hidden; /* Evitar desbordamientos horizontales */
+    }
+  
+    .book-card {
+      width: 250px; /* Ancho fijo para las tarjetas */
+      margin: 0 1rem; /* Espaciado adecuado */
+    }
+  
+    .slick-track {
+      display: flex;
+      justify-content: flex-start; /* Alineación de las tarjetas */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .books-container {
+      gap: 1rem; /* Menor espacio en pantallas pequeñas */
+    }
+  
+    .book-card {
+      width: clamp(100px, 30vw, 150px); /* Ajustar tamaño */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .book-card {
+      width: 100%; /* Una tarjeta por fila */
+    }
+  
+    .books-container {
+      gap: 0.75rem;
+    }
+  }
+  
