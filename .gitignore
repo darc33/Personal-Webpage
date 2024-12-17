@@ -12,6 +12,7 @@ src/backend/logs/
 src/backend/*.log
 src/backend/data/gamesData.json
 src/backend/data/books.json
+src/backend/data/travels.json
 
 # dependencies
 /node_modules

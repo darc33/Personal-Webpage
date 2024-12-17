@@ -4,6 +4,6 @@ import { getGenreCounts, getLatestPosts } from '../controllers/booksController.j
 const router = express.Router();
 
 router.get('/genres', getGenreCounts);
-router.get('/posts', getLatestPosts)
+router.get('/posts', getLatestPosts);
 
 export default router;
