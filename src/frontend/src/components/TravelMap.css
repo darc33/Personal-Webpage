@@ -1,0 +1,55 @@
+/* Contenedor principal */
+.map-container {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    width: 100%;             /* Takes up all available width */
+    margin: 0;
+  }
+  
+  /* Título */
+  .map-title {
+    position: absolute;
+    top: 10px;
+    text-align: center;
+    font-size: clamp(2rem, 3vw, 4rem);
+    font-weight: bold;
+    color: #00FF00;
+    width: 100%;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(255, 0, 200, 0.8), 0 0 20px rgba(0, 196, 255, 0.8);
+  }
+  
+  /* Mapa SVG */
+  .map-travel {
+    max-width: 100%; /* Adapts to the size of the container */
+    max-height: 90vh; /* Maximum height */
+    height: auto;
+    width: auto;
+    border-radius: 10px;
+  }
+  
+  /* Tooltip */
+  .map-container .tooltip {
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    pointer-events: none;
+    font-size: 14px;
+    white-space: nowrap; /* Avoid line breaks */
+    box-shadow: 0 0 15px rgba(0, 196, 255, 0.8);
+  transition: transform 0.2s ease-in-out;
+  }
+  
+path {
+    transition: fill 0.3s ease-in-out;
+  }
+  
+  path:hover {
+    fill: #00c4ff; /* Bright color when country is hovered */
+    cursor: pointer;
+  }
