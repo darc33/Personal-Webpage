@@ -146,7 +146,7 @@
   .info-text {
     cursor: pointer;
     margin-left: 5px;
-    color: #007BFF; /* Color azul para hacer notar el símbolo "?" */
+    color: #007BFF;
   }
   
   .password-tooltip {

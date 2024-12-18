@@ -32,7 +32,7 @@ const SignUpModal = ({ onClose }) => {
     return lengthValid && uppercaseValid && lowercaseValid && numberValid && symbolValid;
   };
 
-  // Función para comprobar los requisitos de la contraseña
+  // Function to check password requirements
   const checkPasswordRequirements = (password) => {
     const lengthValid = password.length >= 6;
     const uppercaseValid = /[A-Z]/.test(password);
@@ -147,7 +147,7 @@ const SignUpModal = ({ onClose }) => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => {setPassword(e.target.value);
-                    checkPasswordRequirements(e.target.value); // Comprobamos los requisitos mientras escriben
+                    checkPasswordRequirements(e.target.value); // Check the requirements as they write
                   }}  
               />
               {errors.password && <div className="error">{errors.password}</div>}
