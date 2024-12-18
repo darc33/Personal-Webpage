@@ -6,7 +6,7 @@ const ForgotPasswordModal = ({ isModalOpen, onClose }) => {
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccessMessage('');
     // Email validation
@@ -15,9 +15,28 @@ const ForgotPasswordModal = ({ isModalOpen, onClose }) => {
       return;
     }
     // The form is valid, can send it
-    console.log("Email enviado para recuperar la contraseña:", email);
     setError('');
-    setSuccessMessage('A recovery email has been sent to your email address!');
+    try {
+      const response = await fetch('http://localhost:5000/api/users/recover-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        setSuccessMessage(data.message || 'A recovery email has been sent!');
+        console.log("Email enviado para recuperar la contraseña:", email);
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'An error occurred. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error al enviar la solicitud de recuperación de contraseña:', error);
+      setError('An error occurred. Please try again.');
+    }
   };
 
   const validateEmail = (email) => {

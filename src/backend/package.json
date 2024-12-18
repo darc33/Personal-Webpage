@@ -19,6 +19,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "he": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.12.0",
     "node-fetch": "^3.3.2"
   },

@@ -6,7 +6,9 @@ import cors from 'cors';
 import gamesRoutes from './routes/games.js';
 import booksRoutes from './routes/books.js';
 import travelsRoutes from './routes/travels.js';
+import usersRoutes from './routes/users.js';
 import errorHandler from './middleware/errorHandler.js';
+
 
 dotenv.config()
 const app = express();
@@ -39,6 +41,7 @@ app.get('/steam-achievements', async (req, res) => {
 app.use('/api/games', gamesRoutes);
 app.use('/api/books', booksRoutes);
 app.use('/api/travels', travelsRoutes);
+app.use('/api/users', usersRoutes);
 // Middleware de manejo de errores
 app.use(errorHandler);
 

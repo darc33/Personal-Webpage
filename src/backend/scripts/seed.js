@@ -1,27 +1,24 @@
 import bcrypt from "bcrypt";
-import connectToDatabase from "../config/mongo.js"; // Importa tu configuración de conexión
+import connectToDatabase from "../config/mongo.js"; 
 
-// Función para inicializar datos
 async function seedDatabase()  {
   try {
-    // Conectar a la base de datos
+    // Connect to the database
     const db = await connectToDatabase();
     console.log("Connected to MongoDB!");
 
-    // Definir las colecciones
+    // Define the collections
     const usersCollection = db.collection("users");
     const travelsCollection = db.collection("travels");
     const booksCollection = db.collection("books");
     const gamesCollection = db.collection("games");
 
-    // Limpiar las colecciones existentes (opcional)
     await usersCollection.deleteMany({});
     await travelsCollection.deleteMany({});
     await booksCollection.deleteMany({});
     await gamesCollection.deleteMany({});
     console.log("Existing collections cleared.");
 
-    // Insertar datos de usuarios
     const hashedPassword = await bcrypt.hash("password123", 10);
 
     const userResult = await usersCollection.insertOne({
@@ -35,7 +32,6 @@ async function seedDatabase()  {
 
     const userId = userResult.insertedId;
 
-    // Insertar datos de viajes
     const travelResult = await travelsCollection.insertMany([
       {
         userId: userId,
@@ -59,7 +55,6 @@ async function seedDatabase()  {
         { $set: { travels: travelResult.insertedIds } }
     );
 
-    // Insertar datos de libros
     const booksResult = await booksCollection.insertMany([
       {
         userId: userId,
@@ -88,7 +83,6 @@ async function seedDatabase()  {
         { $set: { books: booksResult.insertedIds } }
     );
 
-    // Insertar datos de videojuegos
     const gamesResult = await gamesCollection.insertMany([
       {
         userId: userId,
@@ -125,5 +119,5 @@ async function seedDatabase()  {
   }
 };
 
-// Ejecutar la función
+// Execute the function
 seedDatabase();

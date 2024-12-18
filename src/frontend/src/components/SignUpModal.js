@@ -15,6 +15,7 @@ const SignUpModal = ({ onClose }) => {
     symbol: false,
   });
   const [errors, setErrors] = useState({ name: '', email: '', password: '' });
+  const [successMessage, setSuccessMessage] = useState('');
 
   // Form validation
   const validateEmail = (email) => {
@@ -50,9 +51,9 @@ const SignUpModal = ({ onClose }) => {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setSuccessMessage('');
     // Validate the fields
     let nameError = '';
     let emailError = '';
@@ -81,6 +82,27 @@ const SignUpModal = ({ onClose }) => {
 
     // The form is valid, can send it
     console.log('Registro válido, enviar datos al backend');
+    try {
+      const response = await fetch('http://localhost:5000/api/users/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Creacion exitosa:', data);
+        setSuccessMessage('Registration successful! Please check your email to verify your account.');
+      } else {
+        const errorData = await response.json();
+        setErrors({ name: '', email: '', password: errorData.message });
+      }
+    } catch (error) {
+      console.error('Error al enviar la solicitud de registro:', error);
+      setErrors({ name: '', email: '', password: 'An error occurred, please try again.'});
+    }
   };
 /*
   // handling google answers
@@ -164,6 +186,7 @@ const SignUpModal = ({ onClose }) => {
                  </ul>
                 </div>
               </div>
+              {successMessage && <div className="success">{successMessage}</div>}
               <button type="submit" className="sign-up-button">Sign Up</button>
             </form>
           </div>

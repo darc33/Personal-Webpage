@@ -21,7 +21,7 @@ const LoginModal = ({ isModalOpen, onClose, onForgotPassword }) => {
         return password.length >= 6; // Make sure the password has at least 6 characters
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Validate the fields
@@ -47,6 +47,33 @@ const LoginModal = ({ isModalOpen, onClose, onForgotPassword }) => {
 
         // The form is valid, can send it
         console.log('Formulario válido, enviar datos al backend');
+        try {
+            const response = await fetch('http://localhost:5000/api/users/login', {
+                method: 'POST', // The request method
+                headers: {
+                    'Content-Type': 'application/json', // send the body in JSON format
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Login exitoso:', data);
+
+                // Do something with the response, and save the JWT token
+                // localStorage.setItem('token', data.token);
+            } else {
+                const errorData = await response.json();
+                console.error('Login error:', errorData.message);
+                setErrors({ email: '', password: errorData.message });
+            }
+        } catch (error) {
+            console.error('Error sending login request:', error);
+            setErrors({ email: '', password: 'An error occurred, please try again.' });
+        }
     };
 
     return (
