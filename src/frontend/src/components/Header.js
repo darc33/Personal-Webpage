@@ -3,9 +3,11 @@ import "./Header.css";
 import GlitchText from './GlitchText';
 import { Link } from "react-router-dom";
 import LoginModal from "./LoginModal";
+import SignUpModal from "./SignUpModal";
 
 function Header(){
     const [isModalOpen, setModalOpen] = useState(false);
+    const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);  // For the sign-up
     return(
         <div className="header-container">
         <header className="home-header">
@@ -18,9 +20,10 @@ function Header(){
         
         
         <div className="header-buttons">
-          <button onClick={() => setModalOpen(true)}className="btn btn-login">Log In</button>
+          <button onClick={() => setModalOpen(true)} className="btn btn-login">Log In</button>
           {isModalOpen && <LoginModal onClose={() => setModalOpen(false)} />}
-          <button className="btn btn-register">Register</button>
+          <button onClick={() => setIsSignUpModalOpen(true)} className="btn btn-register">Register</button>
+          {isSignUpModalOpen && <SignUpModal onClose={() => setIsSignUpModalOpen(false)} />}
         </div>        
       </header>
 

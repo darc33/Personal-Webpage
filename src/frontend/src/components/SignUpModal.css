@@ -1,0 +1,220 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dimmed background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in-out;
+    z-index: 1001;
+}
+
+.sign-up-modal-card {
+    background: rgba(20, 20, 30, 0.9);
+    backdrop-filter: blur(10px); /* Blur Effect*/
+    border: 2px solid #0ff; /* Bright border */
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    display: flex;
+    width: clamp(300px, 50%, 500px);
+    max-width: 90%;
+    animation: fadeIn 0.5s ease-in-out;
+    position: relative;
+    overflow: visible;
+}
+
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: clamp(16px, 2vw, 20px);
+    cursor: pointer;
+}
+
+/* Modal content */
+.modal-content {
+    display: flex;
+    width: 100%;
+}
+
+/* Sign-up Options Section */
+.sign-up-options {
+    flex: 0.4;
+    padding: clamp(10px, 2vw, 20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sign-up-options h3 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: clamp(14px, 2vw, 18px);
+    ;
+}
+
+.social-button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: clamp(8px, 1.5vw, 12px);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    font-size: clamp(12px, 1.5vw, 14px);
+}
+
+.google {
+    background-color: #db4437;
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.social-button:hover {
+    opacity: 0.9;
+}
+
+/* Sign-up Form */
+.sign-up-form {
+    flex: 0.6;
+    padding: clamp(10px, 2vw, 20px) clamp(15px, 2vw, 25px);
+}
+
+.sign-up-form h3 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: clamp(16px, 2vw, 20px);
+}
+
+.input-field {
+    width: 100%;
+    max-width: 100%;
+    padding: clamp(7px, 2vw, 10px);
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    outline: none;
+    box-sizing: border-box; /* Avoid overflow */
+}
+
+.input-field::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.error {
+    color: red;
+    font-size: clamp(10px, 2vw, 12px);
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    display: block; /* Ensures that messages are displayed on a new line */
+}
+
+.sign-up-button {
+    width: 100%;
+    padding: clamp(10px, 2vw, 15px);
+    background-color: #0ff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.password-requirements {
+    position: relative;
+    margin-top: clamp(-7px, 2vw, -10px);; 
+  }
+
+  .password-validation-info {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #444;
+  }
+  
+  .info-text {
+    cursor: pointer;
+    margin-left: 5px;
+    color: #007BFF; /* Color azul para hacer notar el símbolo "?" */
+  }
+  
+  .password-tooltip {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    z-index: 10;
+    transform: translateY(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box; /* Avoid overflow */
+  }
+  
+  .password-validation-info:hover .password-tooltip {
+    display: block;
+  }
+  
+  .password-tooltip ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+  }
+  
+  .password-tooltip li {
+    margin-bottom: 8px;
+  }
+  
+  .password-tooltip .valid {
+    text-decoration: line-through;
+    color: green;
+  }
+  
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Media Query for small screens */
+@media (max-width: 600px) {
+    .modal-card {
+        flex-direction: column; /* Switch to vertical */
+        width: 90%; /* Wider on mobile */
+    }
+
+    .modal-content {
+        flex-direction: column; /* Stack content */
+    }
+
+    .login-options {
+        border-right: none; /* Remove separation */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Horizontal separator */
+        padding: 15px;
+    }
+
+    .login-form {
+        padding: 15px;
+    }
+}
