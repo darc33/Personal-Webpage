@@ -32,29 +32,45 @@ const mergeGames = async (steamGames) => {
     const allGames = [...normalizedSteamGames, ...normalizedOtherGames];
     //Remove repeated games
     const uniqueGames = allGames.reduce((acc, game) => {
-        if (!acc.some(existingGame => existingGame.name === game.name)) {
+        const existingGame = acc.find(existingGame => existingGame.name === game.name);
+
+        if (!existingGame) {
+            // If the game is not in the accumulator, add it as is
             acc.push(game);
+        } else {
+            // If the game is already in the accumulator, we only update the genre
+            existingGame.genre = game.genre;
         }
+
         return acc;
     }, []);
 
     // Replace the platforms
     const updatedGames = uniqueGames.map(game => {
         const updatedPlatform = game.platform
-        .split(', ')
-        .map(platform => 
-          platform
-            .replace('PlayStation 1', 'PS1')
-            .replace('PlayStation2', 'PS2')
-            .replace('PlayStation3', 'PS3')
-        )
-        .join(', '); 
+            .split(', ')
+            .map(platform =>
+                platform
+                    .replace('PlayStation 1', 'PS1')
+                    .replace('PlayStation2', 'PS2')
+                    .replace('PlayStation3', 'PS3')
+            )
+            .join(', ');
 
         return {
             ...game,
             platform: updatedPlatform
         };
     });
+
+    //list of games
+    const filteredGames = updatedGames.map(game => ({
+        name: game.name,
+        platform: game.platform,
+        genre: game.genre,
+        timePlayed: game.playtime_forever,
+    }))
+        .filter(game => game.timePlayed > 0);
     const tAchievements = allGames.reduce((acc, game) => acc + (game.unlockedAchievements || 0), 0);
     const totalHours = allGames.reduce((acc, game) => acc + (game.playtime_forever || 0), 0)
 
@@ -65,6 +81,7 @@ const mergeGames = async (steamGames) => {
             .slice(0, 3), // Top 3 most played games
         tAchievements: tAchievements,
         totalHours: totalHours,
+        gamesList: filteredGames,
     };
 };
 
